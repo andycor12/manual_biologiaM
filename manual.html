@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>BIOLOGIA MOLECULAR</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    /* Estilos mejorados */
+    body {
+      background: #f5f7fa;
+    }
+
+    .card-muestra {
+      background: white;
+      border: none;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-left: 5px solid #3498db;
+    }
+
+    .card-muestra:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .card-muestra.arn {
+      border-left-color: #e74c3c;
+    }
+
+    .card-muestra h5 {
+      color: #3498db;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .card-muestra.arn h5 {
+      color: #e74c3c;
+    }
+
+    .card-muestra p {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .detalle-inline {
+      display: inline-block;
+      background: #f0f4f8;
+      padding: 6px 12px;
+      border-radius: 6px;
+      margin: 3px 5px 3px 0;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-tipo {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .badge-adn {
+      background: #3498db;
+      color: white;
+    }
+
+    .badge-arn {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .estado-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .estado-pendiente { background: #f39c12; }
+    .estado-proceso { background: #3498db; }
+    .estado-completado { background: #27AE60; }
+
+    .estadistico {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      border-top: 4px solid #3498db;
+      margin: 15px 0;
+      box-shadow: 0 4px 15px rgba(52,152,219,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .estadistico:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(52,152,219,0.2);
+    }
+
+    .numero {
+      font-size: 36px;
+      font-weight: 700;
+      color: #3498db;
+      margin: 10px 0;
+    }
+
+    .label {
+      color: #666;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      color: #2c3e50;
+      border-bottom: 3px solid #21d7ff;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    .chart-container {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+
+    .list-container {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/LOGO_U.png" alt="">
+            <span> Universidad Metropolitana </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="toma.html">Manual de Procedimientos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="manual.html">Progreso</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="mocap.html">MOCAP</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contactos.html">Contacto</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container mt-5" style="padding-bottom: 50px;">
+        <h2 class="section-title text-center"><i class="fa fa-heartbeat"></i> Seguimiento de Muestras</h2>
+
+        <!-- ESTADÍSTICAS -->
+        <div class="row mb-5">
+            <div class="col-md-4 col-sm-6">
+                <div class="estadistico">
+                    <i class="fa fa-flask" style="font-size: 28px; color: #3498db; margin-bottom: 10px;"></i>
+                    <div class="numero" id="total-adn">0</div>
+                    <div class="label">Muestras ADN</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="estadistico">
+                    <i class="fa fa-flask" style="font-size: 28px; color: #e74c3c; margin-bottom: 10px;"></i>
+                    <div class="numero" id="total-arn">0</div>
+                    <div class="label">Muestras ARN</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="estadistico">
+                    <i class="fa fa-flask" style="font-size: 28px; color: #27AE60; margin-bottom: 10px;"></i>
+                    <div class="numero" id="total-muestras">0</div>
+                    <div class="label">Total de Muestras</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-4 col-sm-6">
+                <div class="estadistico">
+                    <i class="fa fa-user" style="font-size: 28px; color: #9b59b6; margin-bottom: 10px;"></i>
+                    <div class="numero" id="pacientes-unicos">0</div>
+                    <div class="label">Pacientes Únicos</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="estadistico">
+                    <i class="fa fa-tasks" style="font-size: 28px; color: #3498db; margin-bottom: 10px;"></i>
+                    <div class="numero" id="progreso-adn" style="color: #3498db;">0/6</div>
+                    <div class="label">Progreso ADN</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="estadistico">
+                    <i class="fa fa-tasks" style="font-size: 28px; color: #e74c3c; margin-bottom: 10px;"></i>
+                    <div class="numero" id="progreso-arn" style="color: #e74c3c;">0/6</div>
+                    <div class="label">Progreso ARN</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRÁFICA -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="chart-container">
+                    <h4 class="mb-4"><i class="fa fa-pie-chart"></i> <strong>Distribución de Muestras por Tipo</strong></h4>
+                    <div style="position: relative; height: 300px;">
+                        <canvas id="chartMuestras"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MUESTRAS -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="list-container">
+                    <h4 class="mb-4"><i class="fa fa-flask"></i> <strong style="color: #3498db;">Muestras de ADN</strong></h4>
+                    <div id="list-adn"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="list-container">
+                    <h4 class="mb-4"><i class="fa fa-flask"></i> <strong style="color: #e74c3c;">Muestras de ARN</strong></h4>
+                    <div id="list-arn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+$(document).ready(function(){
+
+    let registrosADN = JSON.parse(localStorage.getItem('registrosADN')) || [];
+    let registrosARN = JSON.parse(localStorage.getItem('registrosARN')) || [];
+    let procesosADN = JSON.parse(localStorage.getItem('procesosADN')) || [
+        {paso:1, estado:'Pendiente'},
+        {paso:2, estado:'Pendiente'},
+        {paso:3, estado:'Pendiente'},
+        {paso:4, estado:'Pendiente'},
+        {paso:5, estado:'Pendiente'},
+        {paso:6, estado:'Pendiente'}
+    ];
+    let procesosARN = JSON.parse(localStorage.getItem('procesosARN')) || [
+        {paso:1, estado:'Pendiente'},
+        {paso:2, estado:'Pendiente'},
+        {paso:3, estado:'Pendiente'},
+        {paso:4, estado:'Pendiente'},
+        {paso:5, estado:'Pendiente'},
+        {paso:6, estado:'Pendiente'}
+    ];
+
+    // ESTADÍSTICAS
+    $('#total-adn').text(registrosADN.length);
+    $('#total-arn').text(registrosARN.length);
+    $('#total-muestras').text(registrosADN.length + registrosARN.length);
+
+    let pacientes = new Set();
+    registrosADN.forEach(reg => pacientes.add(reg.doc));
+    registrosARN.forEach(reg => pacientes.add(reg.doc));
+    $('#pacientes-unicos').text(pacientes.size);
+
+    // Calcular progreso basado en número de registros
+    $('#progreso-adn').text(registrosADN.length + '/6');
+    $('#progreso-arn').text(registrosARN.length + '/6');
+
+    // Función para obtener color de estado
+    function getEstadoBadge(estado) {
+        if(estado === 'Completado') return 'estado-completado';
+        if(estado === 'En proceso') return 'estado-proceso';
+        return 'estado-pendiente';
+    }
+
+    // MUESTRAS ADN
+    if(registrosADN.length === 0) {
+        $('#list-adn').html('<div class="no-data"><i class="fa fa-inbox" style="font-size: 40px;"></i><p>No hay muestras de ADN registradas</p></div>');
+    } else {
+        registrosADN.forEach((reg, index) => {
+            let estadoBadge = getEstadoBadge(reg.estado);
+            $('#list-adn').append(`
+                <div class="card-muestra">
+                    <h5><i class="fa fa-flask"></i> Muestra ${index + 1}</h5>
+                    <p><strong>Paciente:</strong> ${reg.nombre}</p>
+                    <p><strong>Documento:</strong> ${reg.doc}</p>
+                    <p><strong>Tipo:</strong> <span class="badge-tipo badge-adn">${reg.tipo}</span><span class="estado-badge ${estadoBadge}">${reg.estado || 'Pendiente'}</span></p>
+                    <div style="background: #f9f9f9; padding: 12px; border-radius: 8px; margin: 12px 0;">
+                        <div class="detalle-inline"><i class="fa fa-droplet"></i> ${reg.cantidad || '-'}</div>
+                        <div class="detalle-inline"><i class="fa fa-thermometer"></i> ${reg.temperatura || '-'}</div>
+                        <div class="detalle-inline"><i class="fa fa-tasks"></i> ${reg.proceso || '-'}</div>
+                    </div>
+                    <p style="font-size: 12px; color: #999; margin: 8px 0 0 0;"><i class="fa fa-calendar"></i> ${reg.fecha}</p>
+                    ${reg.observaciones ? '<p style="font-size: 13px; border-left: 3px solid #3498db; padding-left: 10px; margin-top: 8px;"><strong>Obs:</strong> ' + reg.observaciones + '</p>' : ''}
+                </div>
+            `);
+        });
+    }
+
+    // MUESTRAS ARN
+    if(registrosARN.length === 0) {
+        $('#list-arn').html('<div class="no-data"><i class="fa fa-inbox" style="font-size: 40px;"></i><p>No hay muestras de ARN registradas</p></div>');
+    } else {
+        registrosARN.forEach((reg, index) => {
+            let estadoBadge = getEstadoBadge(reg.estado);
+            $('#list-arn').append(`
+                <div class="card-muestra arn">
+                    <h5><i class="fa fa-flask"></i> Muestra ${index + 1}</h5>
+                    <p><strong>Paciente:</strong> ${reg.nombre}</p>
+                    <p><strong>Documento:</strong> ${reg.doc}</p>
+                    <p><strong>Tipo:</strong> <span class="badge-tipo badge-arn">${reg.tipo}</span><span class="estado-badge ${estadoBadge}">${reg.estado || 'Pendiente'}</span></p>
+                    <div style="background: #f9f9f9; padding: 12px; border-radius: 8px; margin: 12px 0;">
+                        <div class="detalle-inline"><i class="fa fa-droplet"></i> ${reg.cantidad || '-'}</div>
+                        <div class="detalle-inline"><i class="fa fa-thermometer"></i> ${reg.temperatura || '-'}</div>
+                        <div class="detalle-inline"><i class="fa fa-tasks"></i> ${reg.proceso || '-'}</div>
+                    </div>
+                    <p style="font-size: 12px; color: #999; margin: 8px 0 0 0;"><i class="fa fa-calendar"></i> ${reg.fecha}</p>
+                    ${reg.observaciones ? '<p style="font-size: 13px; border-left: 3px solid #e74c3c; padding-left: 10px; margin-top: 8px;"><strong>Obs:</strong> ' + reg.observaciones + '</p>' : ''}
+                </div>
+            `);
+        });
+    }
+
+    // GRÁFICA
+    if(registrosADN.length > 0 || registrosARN.length > 0) {
+        let ctx = document.getElementById('chartMuestras').getContext('2d');
+        let chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['ADN', 'ARN'],
+                datasets: [{
+                    data: [registrosADN.length, registrosARN.length],
+                    backgroundColor: ['#3498db', '#e74c3c'],
+                    borderColor: ['#2980b9', '#c0392b'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    }
+
+});
+</script>
+
+</body>
+</html>
