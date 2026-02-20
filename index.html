@@ -27,6 +27,117 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* BOTÓN */
+    #chatBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #3498db, #3498db);
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .3);
+    }
+
+    /* CHAT */
+    #chatBox {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .35);
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    #header {
+      background: linear-gradient(135deg, #3498db, #3498db);
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+    }
+
+    #close {
+      cursor: pointer;
+    }
+
+    /* MENSAJES */
+    #msgs {
+      height: 330px;
+      overflow: auto;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .msg {
+      padding: 10px 14px;
+      border-radius: 18px;
+      max-width: 75%;
+      font-size: 14px;
+    }
+
+    .user {
+      background: #3498db;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .bot {
+      background: #f1f3ff;
+    }
+
+    /* INPUT */
+    #inputArea {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    #input {
+      flex: 1;
+      border: none;
+      padding: 15px;
+      outline: none;
+    }
+
+    #sendBtn,
+    #micBtn {
+      width: 55px;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    #sendBtn {
+      background: #3498db;
+    }
+
+    #micBtn {
+      background: #28a745;
+    }
+  </style>
+
+
+
+
+
 </head>
 
 <body>
@@ -38,7 +149,7 @@
           <a class="navbar-brand" href="index.html">
             <img src="images/LOGO_U.png" alt="">
             <span>
-             Universidad Metropolitana 
+              Universidad Metropolitana
             </span>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -64,11 +175,11 @@
                 <li class="nav-item">
                   <a class="nav-link" href="contactos.html">Contacto</a>
                 </li>
-               
+
               </ul>
-             
+
             </div>
-           
+
           </div>
         </nav>
       </div>
@@ -79,9 +190,9 @@
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          
-          
-         
+
+
+
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -90,10 +201,10 @@
                 <div class="col-md-4 offset-md-2">
                   <div class="slider_detail-box">
                     <h1 class="welcome">
-                        Bienvenido a nuestro sistema de biología molecular
-                      
+                      Bienvenido a nuestro sistema de biología molecular
+
                     </h1>
-                   
+
                     <div class="btn-box">
                       <a href="toma.html" class="btn-1">
                         Toma de Muestra
@@ -112,8 +223,8 @@
               </div>
             </div>
           </div>
-        
-        
+
+
         </div>
       </div>
 
@@ -121,7 +232,7 @@
     <!-- end slider section -->
   </div>
 
-  
+
 
   <!-- service section -->
   <section class="service_section layout_padding">
@@ -139,7 +250,7 @@
                 </div>
                 <div class="detail_box">
                   <h6>
-                   Extracción y Amplificación
+                    Extracción y Amplificación
                   </h6>
                   <p>
                     Representa el módulo de Resultados Genéticos o la base de datos de secuencias.
@@ -174,7 +285,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <div class="col-md-4">
           <img src="images/tool.png" alt="" class="w-100">
@@ -184,13 +295,29 @@
   </section>
 
   <!-- end service section -->
+  <!-- BOTON -->
+  <button id="chatBtn">💬</button>
+
+  <!-- CHAT -->
+  <div id="chatBox">
+
+    <div id="header">
+      Asistente IA
+      <span id="close">✖</span>
+    </div>
+
+    <div id="msgs"></div>
+
+    <div id="inputArea">
+      <input id="input" placeholder="Pregúntame algo...">
+      <button id="sendBtn">➤</button>
+    </div>
+
+  </div>
 
 
 
-  
 
-  
- 
 
   <!-- footer section -->
   <section class="container-fluid footer_section">
@@ -203,6 +330,156 @@
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+  <script>
+    // DOM
+    const chatBtn = document.getElementById("chatBtn");
+    const chatBox = document.getElementById("chatBox");
+    const closeBtn = document.getElementById("close");
+    const msgs = document.getElementById("msgs");
+    const input = document.getElementById("input");
+    const sendBtn = document.getElementById("sendBtn");
+    const micBtn = document.getElementById("micBtn");
+
+    let abierto = false;
+
+    // ABRIR / CERRAR (BOTÓN PRINCIPAL)
+    chatBtn.onclick = () => {
+      abierto = !abierto;
+      chatBox.style.display = abierto ? "block" : "none";
+    };
+
+    // CERRAR CON X
+    closeBtn.onclick = () => {
+      abierto = false;
+      chatBox.style.display = "none";
+    };
+
+    // AGREGAR MENSAJE
+    function add(text, type) {
+      let div = document.createElement("div");
+      div.className = "msg " + type;
+      div.innerText = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    // IA
+    function IA(text) {
+      text = text.toLowerCase().trim();
+
+
+        // SALUDO
+        if (/hola|buenas|hey/.test(text)) {
+          return "Hola Soy tu asistente en biología molecular. ¿En qué proceso necesitas ayuda?";
+        }
+
+        // TOMA DE MUESTRA
+        if (text.includes("toma de muestra")) {
+          return "La toma de muestra es el primer paso del análisis. Consiste en recolectar material biológico (sangre, saliva o tejido) bajo condiciones estériles para evitar contaminación.";
+        }
+
+        // ARN
+        if (text.includes("arn")) {
+          return "El ARN (ácido ribonucleico) es una molécula que participa en la síntesis de proteínas y en la expresión genética.";
+        }
+
+        // ADN
+        if (text.includes("adn")) {
+          return "El ADN (ácido desoxirribonucleico) contiene la información genética que determina las características de los seres vivos.";
+        }
+
+        // PCR
+        if (text.includes("pcr")) {
+          return "La PCR es una técnica de laboratorio que amplifica fragmentos de ADN, permitiendo su análisis detallado.";
+        }
+
+        // PROTEINAS
+        if (text.includes("proteinas") || text.includes("proteínas")) {
+          return "Las proteínas son biomoléculas formadas por aminoácidos que cumplen funciones estructurales, enzimáticas y de regulación en el organismo.";
+        }
+
+        // CONTROL DE CALIDAD
+        if (text.includes("control de calidad")) {
+          return "El control de calidad verifica que las muestras y procesos sean confiables. Incluye validación de equipos, reactivos, condiciones y resultados antes del análisis final.";
+        }
+
+        // SECUENCIACION ADN
+        if (text.includes("secuenciacion")) {
+          return "La secuenciación de ADN permite determinar el orden de los nucleótidos en una molécula de ADN, lo que ayuda a identificar genes y mutaciones.";
+        }
+
+        // IA
+        if (text.includes("inteligencia artificial") || text.includes("ia")) {
+          return "La inteligencia artificial es una tecnología que permite a las máquinas aprender, analizar datos y tomar decisiones similares a un humano.";
+        }
+
+        // BIOLOGIA MOLECULAR
+        if (text.includes("biologia molecular")) {
+          return "La biología molecular estudia los procesos celulares a nivel molecular, especialmente el ADN, ARN y proteínas.";
+        }
+
+        // LECTURA DE MUESTRAS
+        if (text.includes("lectura") || text.includes("resultados")) {
+          return "La lectura de muestras de ADN y ARN se realiza mediante equipos especializados que analizan concentración, pureza y secuencia genética.";
+        }
+
+        // RESPUESTA GENERAL
+        return "Interesante Pregunta, ¿Quieres que te explique ese proceso paso a paso?";
+      }
+
+      // VOZ SALIDA
+      function hablar(texto) {
+        const speech = new SpeechSynthesisUtterance(texto);
+        speech.lang = "es-ES";
+        window.speechSynthesis.speak(speech);
+      }
+
+      // ENVIAR
+      function enviar() {
+        let t = input.value.trim();
+        if (!t) return;
+
+        add(t, "user");
+        input.value = "";
+
+        setTimeout(() => {
+          let r = IA(t);
+          add(r, "bot");
+          hablar(r);
+        }, 500);
+      }
+
+      // EVENTOS
+      sendBtn.onclick = enviar;
+
+      input.addEventListener("keypress", e => {
+        if (e.key === "Enter") enviar();
+      });
+
+      // VOZ ENTRADA
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.lang = "es-ES";
+
+        micBtn.onclick = () => recognition.start();
+
+        recognition.onresult = (e) => {
+          const texto = e.results[0][0].transcript;
+          input.value = texto;
+          enviar();
+        };
+      } else {
+        micBtn.style.display = "none";
+        alert("Tu navegador no soporta voz");
+      }
+  </script>
+
+
+
 
 </body>
 
